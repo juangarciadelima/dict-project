@@ -50,9 +50,9 @@ function App() {
   return (
     <>
       <div
-        className={`${theme} flex min-w-screen min-h-screen flex-col items-center justify-center dark:bg-title transition-all `}
+        className={`${theme} flex min-w-screen min-h-screen flex-col items-center justify-center dark:bg-title transition-all`}
       >
-        <div className="flex flex-col w-4xl gap-10 items-center p-5 overflow-hidden">
+        <div className="flex flex-col w-4xl gap-10 items-center p-5">
           <Header theme={theme} setTheme={setTheme} />
           <InputSearch
             theme={theme}
