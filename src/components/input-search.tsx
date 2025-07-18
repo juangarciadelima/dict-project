@@ -68,7 +68,7 @@ export const InputSearch = ({
               render={({ field }) => (
                 <Input
                   {...field}
-                  className={`w-full ${
+                  className={`w-full lg:text-xl text-sm ${
                     theme === "dark"
                       ? "hover:bg-gray-300/20"
                       : "hover:bg-gray-300/60"
@@ -78,7 +78,7 @@ export const InputSearch = ({
                     field.onChange(e);
                     setWord(e.target.value);
                   }}
-                  placeholder="Enter a word to search..."
+                  placeholder="Enter a word"
                 />
               )}
             />
@@ -98,7 +98,7 @@ export const InputSearch = ({
 
       <span className="flex gap-3 font-details dark:text-white">
         Press
-        <kbd className="bg-details/80 md:px-3 px-1 text-white opacity-100 font-mono">
+        <kbd className="bg-details/80 lg:px-3 px-2 h-4/5 text-white opacity-100 font-mono font-sm">
           Enter
         </kbd>
         or <Search className="text-details" /> to find your word.
