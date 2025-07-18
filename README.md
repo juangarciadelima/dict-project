@@ -8,6 +8,8 @@ Também é possível copiar o link e enviar para os seus colegas para eles já t
 
 OBS: Como o projeto foi feito mais para estudos de estilização, acabei optando por não aplicar responsividade, mas em futuras mexidas, talvez eu aplique :)
 
+OBS 2:Temos uma responsividade básica agora.
+
 ## Tecnologias Utilizadas
 
 - React
