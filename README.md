@@ -6,6 +6,8 @@ O projeto é basicamente um dicionário online onde o usuário pode inserir sua 
 
 Também é possível copiar o link e enviar para os seus colegas para eles já terem acesso a definição da palavra sem precisar.
 
+OBS: Como o projeto foi feito mais para estudos de estilização, acabei optando por não aplicar responsividade, mas em futuras mexidas, talvez eu aplique :)
+
 ## Tecnologias Utilizadas
 
 - React
