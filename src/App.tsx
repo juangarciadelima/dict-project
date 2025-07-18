@@ -16,7 +16,7 @@ function App() {
   const {
     data: wordData,
     isLoading,
-    error,
+    isError,
     refetch,
   } = useQuery({
     queryKey: ["word", word],
@@ -33,6 +33,8 @@ function App() {
     staleTime: 0,
   });
 
+  console.log(isError);
+
   window.addEventListener("storage", (event) => {
     if (event.key === "theme" && event.storageArea === localStorage) {
       setTheme(event?.newValue || "light");
@@ -42,7 +44,7 @@ function App() {
   return (
     <>
       <div
-        className={`${theme} flex min-w-screen min-h-screen flex-col items-center justify-center dark:bg-title transition-all `}
+        className={`${theme} flex min-w-screen min-h-screen flex-col items-center justify-center dark:bg-title transition-all overflow-hidden `}
       >
         <div className="flex flex-col w-4xl h-[800px] gap-10 items-center">
           <Header theme={theme} setTheme={setTheme} />
@@ -52,13 +54,12 @@ function App() {
             setWord={setWord}
             refetch={refetch}
           />
-          {isLoading ? (
-            <div>Loading...</div>
-          ) : error ? (
-            <div>Error</div>
-          ) : (
-            <WordDetails data={wordData} />
-          )}
+
+          <WordDetails
+            data={wordData}
+            isError={isError}
+            isLoading={isLoading}
+          />
         </div>
       </div>
     </>
