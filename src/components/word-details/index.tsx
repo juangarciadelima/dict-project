@@ -8,13 +8,12 @@ type WordDetailsProps = {
 };
 
 export const WordDetails = ({ data, isLoading, isError }: WordDetailsProps) => {
-  // These helper functions can be simplified
   const extractSynonyms = (meaning: Meanings) => meaning.synonyms;
   const extractAntonyms = (meaning: Meanings) => meaning.antonyms;
 
   if (isLoading) {
     return (
-      <div className="h-full flex items-start justify-evenly flex-col w-full gap-5 ">
+      <div className="flex flex-col w-full gap-5">
         <div className="flex flex-col gap-6">
           <Skeleton className="h-[70px] w-[350px]" />
           <Skeleton className="h-[40px] w-[250px]" />

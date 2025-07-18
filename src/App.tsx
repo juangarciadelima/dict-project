@@ -1,5 +1,4 @@
 import { useThemeStore } from "./stores/theme.store";
-
 import { InputSearch } from "./components/input-search";
 import { Header } from "./components/header";
 import { WordDetails } from "./components/word-details";
@@ -50,9 +49,9 @@ function App() {
   return (
     <>
       <div
-        className={`${theme} flex min-w-screen min-h-screen flex-col items-center justify-center dark:bg-title transition-all`}
+        className={`${theme} flex min-h-screen flex-col items-center justify-center dark:bg-title transition-all overflow-y-auto`}
       >
-        <div className="flex flex-col w-4xl gap-10 items-center p-5">
+        <div className="flex flex-col w-full max-w-xl gap-10 items-center p-5 sm:p-8 md:p-10">
           <Header theme={theme} setTheme={setTheme} />
           <InputSearch
             theme={theme}
@@ -60,7 +59,6 @@ function App() {
             setWord={setWord}
             refetch={refetch}
           />
-
           <WordDetails
             data={wordData}
             isError={isError}

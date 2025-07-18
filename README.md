@@ -27,6 +27,7 @@ Espero que gostem!
 
 ![Screenshot 1](/src/assets/DICT%201.png)
 
+
 ![Screenshot 2](/src/assets/DICT%202.png)
 
 ![Screenshot 3](/src/assets/GIF%20DICT.gif)
