@@ -10,7 +10,6 @@ type ActionTheme = {
 
 const changeTheme = (theme: string) => {
   const htmlElement = document.getElementsByTagName("html")[0];
-  console.log(theme);
   htmlElement.className = theme;
 };
 

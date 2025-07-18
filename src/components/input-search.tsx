@@ -21,7 +21,6 @@ export const InputSearch = ({
 }: InputSearchProps) => {
   const queryClient = useQueryClient();
 
-  // Define the schema for validation
   const schema = z.object({
     word: z
       .string()
@@ -33,7 +32,6 @@ export const InputSearch = ({
 
   type Schema = z.infer<typeof schema>;
 
-  // Initialize the form with controlled inputs
   const {
     control,
     handleSubmit,
@@ -46,17 +44,13 @@ export const InputSearch = ({
     mode: "onChange",
   });
 
-  // Handle form submission
   const onSubmit: SubmitHandler<Schema> = (data) => {
-    // Update word state if needed
     if (data.word !== word) {
       setWord(data.word);
     }
-    
-    // Force refetch by first removing any cached data
+
     queryClient.removeQueries({ queryKey: ["word", data.word] });
-    
-    // Then trigger a fresh fetch
+
     refetch();
   };
 
