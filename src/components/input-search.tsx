@@ -98,7 +98,7 @@ export const InputSearch = ({
 
       <span className="flex gap-3 font-details dark:text-white">
         Press
-        <kbd className="bg-details/80 px-3 text-white opacity-100 font-mono">
+        <kbd className="bg-details/80 md:px-3 px-1 text-white opacity-100 font-mono">
           Enter
         </kbd>
         or <Search className="text-details" /> to find your word.
