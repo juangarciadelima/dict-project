@@ -1,0 +1,103 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm, type SubmitHandler } from "react-hook-form";
+import * as z from "zod";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
+import { Search } from "lucide-react";
+import { useQueryClient } from "@tanstack/react-query";
+
+interface InputSearchProps {
+  theme: string;
+  word: string;
+  setWord: (word: string) => void;
+  refetch: () => void;
+}
+
+export const InputSearch = ({
+  theme,
+  word,
+  setWord,
+  refetch,
+}: InputSearchProps) => {
+  const queryClient = useQueryClient();
+
+  const schema = z.object({
+    word: z
+      .string()
+      .min(2)
+      .max(100)
+      .trim()
+      .nonempty({ message: "Word is required" }),
+  });
+
+  type Schema = z.infer<typeof schema>;
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Schema>({
+    resolver: zodResolver(schema),
+    mode: "onChange",
+  });
+
+  const onSubmit: SubmitHandler<Schema> = async (data) => {
+    if (data.word !== word) {
+      setWord(data.word);
+    }
+
+    queryClient.invalidateQueries({ queryKey: ["word", word] });
+    refetch();
+  };
+
+  return (
+    <div className="w-full flex items-center justify-center flex-col gap-7">
+      <form
+        className="flex w-full justify-center gap-3"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <div className="w-full max-w-[600px] flex flex-col gap-2">
+          <div className="w-full flex items-center gap-3">
+            <Controller
+              name="word"
+              control={control}
+              render={({ field }) => (
+                <Input
+                  className={`w-full ${
+                    theme === "dark"
+                      ? "hover:bg-gray-300/20"
+                      : "hover:bg-gray-300/60"
+                  } transition-colors`}
+                  aria-invalid={!!errors.word}
+                  value={word}
+                  onChange={(e) => {
+                    field.onChange(e);
+                    setWord(e.target.value);
+                  }}
+                  placeholder="Enter a word to search..."
+                />
+              )}
+            />
+            <Button
+              className="bg-details w-12 h-12 rounded-lg cursor-pointer hover:bg-details/80"
+              type="submit"
+              disabled={!word || word.length < 2}
+            >
+              <Search className="size-5" color="white" />
+            </Button>
+          </div>
+          {errors.word && (
+            <span className="text-red-600 text-sm">{errors.word.message}</span>
+          )}
+        </div>
+      </form>
+
+      <span className="flex gap-3 font-details dark:text-white">
+        Press
+        <kbd className="bg-details/80 px-3 text-white opacity-100 font-mono">
+          Enter
+        </kbd>
+        or <Search className="text-details" /> to find your word.
+      </span>
+    </div>
+  );
+};
